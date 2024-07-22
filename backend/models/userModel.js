@@ -6,6 +6,12 @@ const userSchema = mongoose.Schema(
     name: { type: "String", required: true },
     email: { type: "String", unique: true, required: true },
     password: { type: "String", required: true },
+    picture: {
+      type: "String",
+      required: true,
+      default:
+        "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/bulb-city-henrique-feliciano-photography.jpg",
+    },
   },
   { timestamps: true }
 );
