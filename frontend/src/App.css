@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@300&display=swap');
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    background-image: url("./background.jpeg");
+    /* background-image: url("https://wallpaper.forfun.com/fetch/83/838824d6c8b51b8d947a49920d63c9ef.jpeg"); */
+    background-position: center;
+    background-size: cover;
+}
