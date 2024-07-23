@@ -77,7 +77,7 @@ const fetchChats = asyncHandler(async (req, res) => {
 });
 
 //@description     Create a new group chat
-//@route           POST /api/chats/create-group
+//@route           POST /api/chats/new-group
 //@access          Protected
 const createGroup = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {

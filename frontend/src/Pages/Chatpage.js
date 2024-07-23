@@ -1,8 +1,8 @@
 import { ChatState } from "../Context/ChatProvider";
 import { Box } from "@chakra-ui/react";
-import SideDrawer from "../Components/Navbar/SideDrawer";
-import MyChats from "../Components/Navbar/MyChats";
-import ChatBox from "../Components/Navbar/ChatBox";
+import SideDrawer from "../Components/Panel/SideDrawer";
+import MyChats from "../Components/Panel/MyChats";
+import ChatBox from "../Components/Panel/ChatBox";
 
 const Chatpage = () => {
   const { user } = ChatState();
