@@ -10,8 +10,8 @@ import {
   Tab,
   Text,
 } from "@chakra-ui/react";
-import Login from "../components/Authentication/Login";
-import Signup from "../components/Authentication/Signup";
+import Login from "../Components/Authentication/Login";
+import Signup from "../Components/Authentication/Signup";
 
 const Homepage = () => {
   return (
