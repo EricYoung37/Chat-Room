@@ -44,7 +44,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        "/api/users/login",
         { email, password },
         config
       );
@@ -52,14 +52,14 @@ const Login = () => {
       toast({
         title: "Login Successful",
         status: "success",
-        duration: 5000,
+        duration: 1000,
         isClosable: true,
         position: "bottom",
       });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      history.go("/chat"); // push somehow does not redirect
     } catch (error) {
       toast({
         title: "Error Occured",

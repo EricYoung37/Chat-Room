@@ -57,7 +57,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        "/api/users",
         {
           name,
           email,
@@ -68,14 +68,14 @@ const Signup = () => {
       toast({
         title: "Registration Successful",
         status: "success",
-        duration: 5000,
+        duration: 1000,
         isClosable: true,
         position: "bottom",
       });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      history.go("/chat"); // push somehow does not redirect
     } catch (error) {
       toast({
         title: "Error Occured",

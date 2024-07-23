@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
       type: "String",
       required: true,
       default:
-        "https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/bulb-city-henrique-feliciano-photography.jpg",
+        "https://wallbox.ru/resize/1024x1024/wallpapers/main2/201731/more-ostrova-ahta.jpg",
     },
   },
   { timestamps: true }

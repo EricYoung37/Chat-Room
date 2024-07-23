@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
 
 app.use(express.json()); // to accept JSON data
 
-app.use("/api/user", userRoutes);
-app.use("/api/chat", chatRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/chats", chatRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

@@ -3,7 +3,7 @@ const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 
 //@description     Create or fetch a private chat
-//@route           POST /api/chat/
+//@route           POST /api/chats/
 //@access          Protected
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body; // with whom to chat
@@ -34,6 +34,7 @@ const accessChat = asyncHandler(async (req, res) => {
     // create chat
     var chatData = {
       chatName: "private-chat",
+      // may name the chat using user names
       isGroupChat: false,
       users: [req.user._id, userId],
     };
@@ -53,7 +54,7 @@ const accessChat = asyncHandler(async (req, res) => {
 });
 
 //@description     Fetch all chats for a user
-//@route           GET /api/chat/
+//@route           GET /api/chats/
 //@access          Protected
 const fetchChats = asyncHandler(async (req, res) => {
   try {
@@ -76,7 +77,7 @@ const fetchChats = asyncHandler(async (req, res) => {
 });
 
 //@description     Create a new group chat
-//@route           POST /api/chat/create-group
+//@route           POST /api/chats/create-group
 //@access          Protected
 const createGroup = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
@@ -111,7 +112,7 @@ const createGroup = asyncHandler(async (req, res) => {
 });
 
 // @desc    Rename a group chat
-// @route   PUT /api/chat/rename-group
+// @route   PUT /api/chats/rename-group
 // @access  Protected
 const renameGroup = asyncHandler(async (req, res) => {
   const { chatId, chatName } = req.body;
@@ -137,7 +138,7 @@ const renameGroup = asyncHandler(async (req, res) => {
 });
 
 // @desc    Add a group member
-// @route   PUT /api/chat/add-to-group
+// @route   PUT /api/chats/add-to-group
 // @access  Protected
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
@@ -165,7 +166,7 @@ const addToGroup = asyncHandler(async (req, res) => {
 });
 
 // @desc    Remove a group member
-// @route   PUT /api/chat/remove-from-group
+// @route   PUT /api/chats/remove-from-group
 // @access  Protected
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;

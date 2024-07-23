@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Center,
@@ -12,25 +12,32 @@ import {
 } from "@chakra-ui/react";
 import Login from "../Components/Authentication/Login";
 import Signup from "../Components/Authentication/Signup";
+import { useHistory } from "react-router-dom";
 
 const Homepage = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (userInfo) history.push("/chat");
+  }, [history]);
+
   return (
     <Container maxW="xl" centerContent>
       <Center
-        d="flex"
+        display="flex"
         p={2}
         bg="white"
-        w="80%"
-        m="40px 0 15px 0"
+        w="100%"
+        m="4rem 0 2rem 0"
         borderRadius="lg"
-        borderWidth="1px"
       >
         <Text fontSize="xl" fontFamily="Playwrite AU QLD">
           Chat Room
         </Text>
       </Center>
 
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="white" w="100%" p={4} borderRadius="lg">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>

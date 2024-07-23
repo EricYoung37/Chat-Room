@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 const generateToken = require("../config/generateToken");
 
 //@description     Register a new user
-//@route           POST /api/user/
+//@route           POST /api/users/
 //@access          Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, picture } = req.body;
@@ -63,7 +63,7 @@ const authUser = asyncHandler(async (req, res) => {
 });
 
 //@description     Get or search all users
-//@route           GET /api/user?search=<keyword>
+//@route           GET /api/users?search=<keyword>
 //@access          Public
 const allUsers = asyncHandler(async (req, res) => {
   // search by name or email, case insensitive
@@ -71,7 +71,13 @@ const allUsers = asyncHandler(async (req, res) => {
     ? {
         $or: [
           { name: { $regex: req.query.search, $options: "i" } },
-          { email: { $regex: req.query.search, $options: "i" } },
+          {
+            email: {
+              $regex: "^[^@]*" + req.query.search + "[^@]*@[^@]+$",
+              // only search for characters before "@"
+              $options: "i",
+            },
+          },
         ],
       }
     : {};
