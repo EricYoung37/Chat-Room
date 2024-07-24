@@ -21,13 +21,13 @@ import {
 import { BellIcon, ChevronDownIcon, Search2Icon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import axios from "axios";
-import { ChatState } from "../../Context/ChatProvider";
-import ProfileModal from "./ProfileModal";
 import { useHistory } from "react-router-dom";
-import ChatLoading from "./ChatLoading";
-import UserListItem from "./UserListItem";
+import { ChatState } from "../../Context/ChatProvider";
+import ChatLoading from "../Accessories/ChatLoading";
+import UserListItem from "../Accessories/UserListItem";
+import ProfileModal from "../Accessories/ProfileModal";
 
-const SideDrawer = () => {
+const NavBar = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -193,4 +193,4 @@ const SideDrawer = () => {
   );
 };
 
-export default SideDrawer;
+export default NavBar;

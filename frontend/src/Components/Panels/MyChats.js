@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ChatState } from "../../Context/ChatProvider";
 import { Box, Button, Stack, Text, useToast } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
-import ChatLoading from "./ChatLoading";
+import { ChatState } from "../../Context/ChatProvider";
 import { getSender } from "../../config/ChatLogics";
-import GroupChatModal from "./GroupChatModal";
+import ChatLoading from "../Accessories/ChatLoading";
+import GroupChatModal from "../Accessories/GroupChatModal";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -76,7 +76,7 @@ const MyChats = ({ fetchAgain }) => {
         borderRadius="lg"
         overflowY="hidden"
       >
-        {chats ? (
+        {chats.length ? ( // do need .length
           <Stack overflowY="scroll">
             {chats.map((chat) => (
               <Box
