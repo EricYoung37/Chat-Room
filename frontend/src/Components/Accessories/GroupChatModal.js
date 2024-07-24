@@ -11,6 +11,7 @@ import {
   useToast,
   FormControl,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import axios from "axios";
@@ -154,7 +155,7 @@ const GroupChatModal = ({ children }) => {
             <FormControl>
               <Input
                 placeholder="Add Users, e.g., Amy, Bob, Clare"
-                mb={1}
+                mb={2}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -168,7 +169,7 @@ const GroupChatModal = ({ children }) => {
               ))}
             </Box>
             {loading ? (
-              <div>loading</div>
+              <Spinner size="lg" />
             ) : (
               searchResult
                 ?.slice(0, 4)

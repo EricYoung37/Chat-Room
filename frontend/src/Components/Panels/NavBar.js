@@ -124,7 +124,12 @@ const NavBar = () => {
         <Tooltip label="Search Users to Chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <Search2Icon />
-            <Text display={{ base: "none", md: "flex" }} px="2">
+            <Text
+              display={{ base: "none", md: "flex" }}
+              px="2"
+              fontFamily="Work Sans"
+              fontWeight="normal"
+            >
               Search User
             </Text>
           </Button>

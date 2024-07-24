@@ -57,8 +57,9 @@ const MyChats = ({ fetchAgain }) => {
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        fontFamily="Work Sans"
       >
-        My Chats
+        <Text fontSize="1.2rem">My Chats</Text>
         <GroupChatModal>
           <Button display="flex" rightIcon={<AddIcon />}>
             New Group Chat
@@ -70,7 +71,7 @@ const MyChats = ({ fetchAgain }) => {
         display="flex"
         flexDir="column"
         p={3}
-        bg="#f2f8fc"
+        bg="#dcf1ff"
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -82,14 +83,14 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#4eb2f5" : "#f2f8fc"}
+                bg={selectedChat === chat ? "#4eb2f5" : "#ffffff"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}
                 borderRadius="lg"
                 key={chat._id}
               >
-                <Text>
+                <Text fontFamily="Work Sans">
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
