@@ -1,12 +1,104 @@
-import { Box, IconButton, Text } from "@chakra-ui/react";
+import {
+  Box,
+  IconButton,
+  Spinner,
+  Text,
+  FormControl,
+  Input,
+  useToast,
+} from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import "../Accessories/messageStyle.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { ChatState } from "../../Context/ChatProvider";
 import { getSender, getSenderFull } from "../../config/ChatLogics";
 import ProfileModal from "../Accessories/ProfileModal";
 import UpdateGroupChatModal from "../Accessories/UpdateGroupChatModal";
+import ScrollableChat from "./ScrollableChat";
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [newMessage, setNewMessage] = useState();
+  const toast = useToast();
+
   const { user, selectedChat, setSelectedChat } = ChatState();
+
+  const fetchMessages = async () => {
+    if (!selectedChat) return;
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      setLoading(true);
+      const { data } = await axios.get(
+        `/api/messages/${selectedChat._id}`,
+        config
+      );
+
+      setMessages(data);
+      setLoading(false);
+    } catch (error) {
+      toast({
+        title: "Error Occured",
+        description: "Failed to Load Messages",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, [selectedChat]);
+
+  const sendMessage = async (e) => {
+    if (e.key === "Enter" && newMessage) {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+
+        setNewMessage("");
+        // setNewMessage is async
+        // so newMessage would be loaded on post before cleared
+        const { data } = await axios.post(
+          "/api/messages",
+          {
+            content: newMessage,
+            chatId: selectedChat._id,
+          },
+          config
+        );
+
+        setMessages([...messages, data]);
+      } catch (error) {
+        toast({
+          title: "Error Occured",
+          description: "Failed to Send the Message",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom",
+        });
+      }
+    }
+  };
+
+  const typingHandler = (e) => {
+    setNewMessage(e.target.value);
+
+    // Typing Indicator Logic
+  };
 
   return (
     <>
@@ -23,7 +115,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             fontFamily="Work Sans"
           >
             <IconButton
-              d={{ base: "flex", md: "none" }}
+              display={{ base: "flex", md: "none" }}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
@@ -43,7 +135,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             )}
           </Box>
           <Box
-            d="flex"
+            display="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
@@ -54,7 +146,22 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             borderRadius="lg"
             overflowY="hidden"
           >
-            {/* Message Here */}
+            {loading ? (
+              <Spinner size="xl" alignSelf="center" margin="auto" />
+            ) : (
+              <div className="messages">
+                <ScrollableChat messages={messages} />
+              </div>
+            )}
+            <FormControl onKeyDown={sendMessage} isRequired mt={3}>
+              <Input
+                variant="filled"
+                bg="#f0f8ff"
+                placeholder="Type a message..."
+                onChange={typingHandler}
+                value={newMessage}
+              />
+            </FormControl>
           </Box>
         </>
       ) : (
