@@ -143,7 +143,7 @@ const renameGroup = asyncHandler(async (req, res) => {
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
-  // TODO: check if the requester is admin
+  // TODO: Check if the requester is admin
 
   const added = await Chat.findByIdAndUpdate(
     chatId,
@@ -171,9 +171,8 @@ const addToGroup = asyncHandler(async (req, res) => {
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
-  // TODO: check if the requester is admin
-
-  // TODO: ensure group still has more than 2 members after change
+  // TODO: Check if the requester is admin
+  // TODO: Ensure group still has more than 2 members after change
 
   const removed = await Chat.findByIdAndUpdate(
     chatId,

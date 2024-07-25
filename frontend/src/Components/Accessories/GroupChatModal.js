@@ -157,6 +157,7 @@ const GroupChatModal = ({ children }) => {
                 placeholder="Add Users, e.g., Amy, Bob, Clare"
                 mb={2}
                 onChange={(e) => handleSearch(e.target.value)}
+                // TODO: Clear search history on modal close
               />
             </FormControl>
             <Box w="100%" display="flex" flexWrap="wrap">

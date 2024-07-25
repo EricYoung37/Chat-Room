@@ -255,6 +255,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
                 placeholder="Add User to Group"
                 mb={2}
                 onChange={(e) => handleSearch(e.target.value)}
+                // TODO: Clear search history on modal close
               />
             </FormControl>
 
