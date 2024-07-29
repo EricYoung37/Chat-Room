@@ -22,10 +22,6 @@ The project uses `55771` for the server port. When you create your own `.env` wi
 
 - [MongoDB Atlas](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/#:~:text=Connecting%20to%20MongoDB).
 
-### Client Port
-
-React client runs on 3000 by default. You may change this later.
-
 ## Run the App in Docker
 
 To get started, go to the project's root directory.
@@ -34,6 +30,9 @@ To get started, go to the project's root directory.
 /root
 $ docker compose up
 ```
+To access the backend: `localhost:55771`.
+
+To access the frontend: `localhost:3000`.
 
 To stop,
 
@@ -72,7 +71,11 @@ Start the backend and the frontend **in its respective directory**.
 $ npm start
 ```
 
+To access the backend: `localhost:55771`.
+
 ```
 /frontend
 $ npm start
 ```
+
+To access the frontend: `localhost:3000`.
