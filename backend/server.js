@@ -37,13 +37,13 @@ io.on("connection", (socket) => {
 
   socket.on("setup", (userData) => {
     socket.join(userData._id);
-    console.log("User ID: " + userData._id);
+    // console.log("User ID: " + userData._id);
     socket.emit("connected");
   });
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log("User Joined Room: " + room);
+    // console.log("User Joined Room: " + room);
   });
 
   socket.on("is typing", (room) => socket.in(room).emit("is typing"));
