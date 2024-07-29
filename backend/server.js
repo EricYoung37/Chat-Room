@@ -23,7 +23,7 @@ app.use("/api/messages", messageRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 55771;
 
 const server = app.listen(PORT, console.log(`Server Started on PORT ${PORT}`));
 

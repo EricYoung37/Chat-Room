@@ -1,0 +1,45 @@
+name: chat-room
+
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - mongo_data:/data/db # see named volumes below
+    networks:
+      - chat-room
+  
+  backend:
+    build: ./backend
+    container_name: backend_container
+    restart: unless-stopped
+    env_file: ./backend/.env
+    ports:
+      - 55771:55771
+    volumes:
+      - ./backend:/backend # reflect host folder changes to the mapped folders in container
+      - /backend/node_modules # ignore host's node_modules, always use the one in container
+    networks:
+      - chat-room
+    depends_on:
+      - mongodb # start after mongodb
+  
+  frontend:
+    build: ./frontend
+    container_name: frontend_container
+    ports:
+    - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+    networks:
+      - chat-room
+    depends_on:
+      - backend
+
+# named volumes automatically created and managed by Docker
+volumes:
+  mongo_data:
+
+networks:
+  chat-room:
+    driver: bridge
