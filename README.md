@@ -12,7 +12,11 @@ MONGODB_URI     Your MongoDB connection configuration
 JWT_SECRET      Use any string you like
 ```
 
-Instructions for `MONGODB_URI`:
+### Instructions for `PORT`:
+
+The project uses `55771` for the server port. When you create your own `.env` with a different port, remember to also adapt all presence of `55771` in the project.
+
+### Instructions for `MONGODB_URI`:
 
 - [Docker Compose](https://docs.docker.com/compose/networking/). Note how the connection string (URI) matches the service name for the database in **the first example**.
 
