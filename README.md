@@ -12,7 +12,7 @@ MONGODB_URI     Your MongoDB connection configuration
 JWT_SECRET      Use any string you like
 ```
 
-### Instructions for `PORT`:
+### Instruction for `PORT`:
 
 The project uses `55771` for the server port. When you create your own `.env` with a different port, remember to also adapt all presence of `55771` in the project.
 
@@ -21,6 +21,10 @@ The project uses `55771` for the server port. When you create your own `.env` wi
 - [Docker Compose](https://docs.docker.com/compose/networking/). Note how the connection string (URI) matches the service name for the database in **the first example**.
 
 - [MongoDB Atlas](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/#:~:text=Connecting%20to%20MongoDB).
+
+### Client Port
+
+React client runs on 3000 by default. You may change this later.
 
 ## Run the App in Docker
 
